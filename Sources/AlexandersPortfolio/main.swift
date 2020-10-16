@@ -6,6 +6,7 @@ import Plot
 struct AlexandersPortfolio: Website {
     enum SectionID: String, WebsiteSectionID {
         // Add the sections that you want your website to contain here:
+        case about
         case posts
     }
     
@@ -60,8 +61,8 @@ extension Node where Context == HTML.BodyContext {
                             ))
                         },
                         .li(.a(
-                            .href("/assets/resume.pdf"),
-                            .text("Résumé")
+                            .href("/assets/agl_resume.pdf"),
+                            .text("Resume")
                         )),
                         .li(.a(
                             .href("https://github.com/aglegaspi"),
@@ -73,6 +74,8 @@ extension Node where Context == HTML.BodyContext {
                 )
             )//header
     }
+    
+    
     
 }
 

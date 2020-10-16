@@ -4,7 +4,7 @@ description: About Me
 tags: Personal
 ---
 
-# About Me
+# About
 
 My name is Alexander George Legaspi(lee-gas-pee). 
 
