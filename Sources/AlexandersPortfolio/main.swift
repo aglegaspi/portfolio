@@ -42,20 +42,26 @@ private extension Node where Context == HTML.BodyContext {
     }
 }
 
+extension Node where Context == HTML.BodyContext {
+    static func myHeader<T: Website>(for context: PublishingContext<T>) -> Node {
+        .header(
+            .wrapper(
+                .nav(
+                    .class("site-name"),
+                    .text(context.site.name)
+                ) //nav
+            ) //wrapper
+        ) //header
+    }
+}
+
 struct MyHtmlFactory<Site: Website>: HTMLFactory {
     func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .head(for: index, on: context.site),
             
             .body(
-                .header(
-                    .wrapper(
-                        .nav(
-                            .class("site-name"),
-                            .text(context.site.name)
-                        ) //nav
-                    ) //wrapper
-                ), //header
+                .myHeader(for: context), //header
                 
                 .wrapper(
                     .ul(
