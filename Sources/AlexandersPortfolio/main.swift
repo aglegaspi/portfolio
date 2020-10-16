@@ -48,7 +48,10 @@ extension Node where Context == HTML.BodyContext {
             .wrapper(
                 .nav(
                     .class("site-name"),
-                    .text(context.site.name)
+                    .a(
+                        .href("/"),
+                        .text(context.site.name)
+                    ) //a
                 ) //nav
             ) //wrapper
         ) //header
