@@ -72,7 +72,7 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
 extension Theme {
     static var myTheme: Theme {
         Theme(htmlFactory: MyHtmlFactory(),
-              resourcePaths: ["Sources/MyTheme/styles.css"]
+              resourcePaths: ["Resources/MyTheme/styles.css"]
         )
     }
 }
