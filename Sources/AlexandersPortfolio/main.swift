@@ -132,4 +132,6 @@ extension Theme {
 }
 
 // This will generate your website using the built-in Foundation theme:
-try AlexandersPortfolio().publish(withTheme: .myTheme)
+try AlexandersPortfolio().publish(using: [
+    .deploy(using: .gitHub("aglegaspi/portfolio", useSSH: false))
+])
