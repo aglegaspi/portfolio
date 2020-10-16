@@ -91,9 +91,7 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
     }
     
     func makeSectionHTML(for section: Section<Site>, context: PublishingContext<Site>) throws -> HTML {
-        HTML(
-            .head(for: section, on: context.site)
-        ) //html
+        try makeIndexHTML(for: context.index, context: context)
     }
     
     func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
@@ -105,8 +103,8 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
                 .wrapper(
                     .article(
                         .contentBody(item.body)
-                    )
-                )
+                    ) // article
+                ) //wrapper
             ) //body
         ) //html
     }
