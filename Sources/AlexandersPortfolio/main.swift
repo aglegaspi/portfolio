@@ -42,5 +42,33 @@ private extension Node where Context == HTML.BodyContext {
     }
 }
 
+struct MyHtmlFactory<Site: Website>: HTMLFactory {
+    func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
+        HTML("")
+    }
+    
+    func makeSectionHTML(for section: Section<Site>, context: PublishingContext<Site>) throws -> HTML {
+        HTML("")
+    }
+    
+    func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
+        HTML("")
+    }
+    
+    func makePageHTML(for page: Page, context: PublishingContext<Site>) throws -> HTML {
+        HTML("")
+    }
+    
+    func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
+        nil
+    }
+    
+    func makeTagDetailsHTML(for page: TagDetailsPage, context: PublishingContext<Site>) throws -> HTML? {
+        nil
+    }
+    
+    
+}
+
 // This will generate your website using the built-in Foundation theme:
 try AlexandersPortfolio().publish(withTheme: .foundation)
