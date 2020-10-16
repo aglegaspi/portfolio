@@ -59,6 +59,7 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
                 
                 .wrapper(
                     .ul(
+                        .class("item-list"),
                         .forEach(
                             context.allItems(sortedBy: \.date, order: .descending)
                         ) { item in
