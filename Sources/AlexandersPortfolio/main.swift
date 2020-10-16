@@ -44,7 +44,7 @@ private extension Node where Context == HTML.BodyContext {
 
 struct MyHtmlFactory<Site: Website>: HTMLFactory {
     func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
-        HTML("")
+        HTML("Hello World")
     }
     
     func makeSectionHTML(for section: Section<Site>, context: PublishingContext<Site>) throws -> HTML {
@@ -67,8 +67,15 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
         nil
     }
     
-    
+}
+
+extension Theme {
+    static var myTheme: Theme {
+        Theme(htmlFactory: MyHtmlFactory(),
+              resourcePaths: ["Sources/MyTheme/styles.css"]
+        )
+    }
 }
 
 // This will generate your website using the built-in Foundation theme:
-try AlexandersPortfolio().publish(withTheme: .foundation)
+try AlexandersPortfolio().publish(withTheme: .myTheme)
