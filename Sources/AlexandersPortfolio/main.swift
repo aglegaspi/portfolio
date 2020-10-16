@@ -8,13 +8,13 @@ struct AlexandersPortfolio: Website {
         // Add the sections that you want your website to contain here:
         case posts
     }
-
+    
     struct ItemMetadata: WebsiteItemMetadata {
         // Add any site-specific metadata that you want to use here.
     }
-
+    
     // Update these properties to configure your website:
-    var url = URL(string: "https://aglegaspi.github.io/portfolio/Output")!
+    var url = URL(string: "https://aglegaspi.github.io")!
     var name = "Alexander's Portfolio"
     var description = "A portfolio of a Software Engineer"
     var language: Language { .english }
@@ -43,41 +43,61 @@ private extension Node where Context == HTML.BodyContext {
 }
 
 extension Node where Context == HTML.BodyContext {
-    static func myHeader<T: Website>(for context: PublishingContext<T>) -> Node {
-        .header(
+    
+    static func myHeader<T: Website>(for context: PublishingContext<T>,selectedSection: T.SectionID?) -> Node {
+        let sectionIDs = T.SectionID.allCases
+        
+        return .header(
             .wrapper(
-                .nav(
-                    .class("site-name"),
-                    .a(
-                        .href("/"),
-                        .text(context.site.name)
-                    ) //a
-                ) //nav
-            ) //wrapper
-        ) //header
+                .a(.class("site-name"), .href("/"), .text(context.site.name)),
+                .if(sectionIDs.count > 1,
+                    .nav(
+                        .ul(.forEach(sectionIDs) { section in
+                            .li(.a(
+                                .class(section == selectedSection ? "selected" : ""),
+                                .href(context.sections[section].path),
+                                .text(context.sections[section].title)
+                            ))
+                        },
+                        .li(.a(
+                            .href("/assets/resume.pdf"),
+                            .text("Résumé")
+                        )),
+                        .li(.a(
+                            .href("https://github.com/aglegaspi"),
+                            .text("Repo")
+                        ))
+                        )
+                    )
+                )
+                )
+            )//header
     }
+    
 }
 
 struct MyHtmlFactory<Site: Website>: HTMLFactory {
+    
     func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
         HTML(
             .head(for: index, on: context.site),
             
             .body(
-                .myHeader(for: context), //header
+                .myHeader(for: context,selectedSection: nil), //header
                 
                 .wrapper(
                     .ul(
                         .class("item-list"),
                         .forEach(
-                            context.allItems(sortedBy: \.date, order: .descending)
+                            context.allItems(sortedBy: \.date,
+                                             order: .descending)
                         ) { item in
                             .li(
                                 .article(
                                     .h1(.a(
                                         .href(item.path),
                                         .text(item.title)
-                                        ) //a
+                                    ) //a
                                     ), //h1
                                     .p(.text(item.description))
                                     
@@ -91,14 +111,27 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
     }
     
     func makeSectionHTML(for section: Section<Site>, context: PublishingContext<Site>) throws -> HTML {
-        try makeIndexHTML(for: context.index, context: context)
+        HTML(
+            .lang(context.site.language),
+            .head(for: section, on: context.site),
+            .body(
+                .myHeader(for: context, selectedSection: section.id),
+                .wrapper(
+                    //.h1(.text(section.title)),
+                    .contentBody(section.body),
+                    .itemList(for: section.items, on: context.site)
+                    
+                )
+            )
+        )
     }
     
     func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
+            .lang(context.site.language),
             .head(for: item, on: context.site),
             .body(
-                .myHeader(for: context),
+                .myHeader(for: context, selectedSection: item.sectionID),
                 
                 .wrapper(
                     .article(
@@ -110,7 +143,17 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
     }
     
     func makePageHTML(for page: Page, context: PublishingContext<Site>) throws -> HTML {
-        try makeIndexHTML(for: context.index, context: context)
+        
+        HTML(
+            .lang(context.site.language),
+            .head(for: page, on: context.site),
+            
+            .body(
+                .myHeader(for: context, selectedSection: nil),
+                .wrapper(
+                )
+            )
+        )
     }
     
     func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
