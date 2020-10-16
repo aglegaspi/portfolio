@@ -44,19 +44,36 @@ private extension Node where Context == HTML.BodyContext {
 
 struct MyHtmlFactory<Site: Website>: HTMLFactory {
     func makeIndexHTML(for index: Index, context: PublishingContext<Site>) throws -> HTML {
-        HTML("Hello World")
+        HTML(
+            .head(for: index, on: context.site),
+            
+            .body(
+                .header(
+                    .wrapper(
+                        .nav(
+                            .class("site-name"),
+                            .text(context.site.name)
+                        ) //nav
+                    ) //wrapper
+                ) //header
+            ) //body
+        ) //html
     }
     
     func makeSectionHTML(for section: Section<Site>, context: PublishingContext<Site>) throws -> HTML {
-        HTML("")
+        HTML(
+            .head(for: section, on: context.site)
+        ) //html
     }
     
     func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
-        HTML("")
+        HTML(
+            .head(for: item, on: context.site)
+        ) //html
     }
     
     func makePageHTML(for page: Page, context: PublishingContext<Site>) throws -> HTML {
-        HTML("")
+        try makeIndexHTML(for: context.index, context: context)
     }
     
     func makeTagListHTML(for page: TagListPage, context: PublishingContext<Site>) throws -> HTML? {
