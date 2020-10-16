@@ -55,7 +55,23 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
                             .text(context.site.name)
                         ) //nav
                     ) //wrapper
-                ) //header
+                ), //header
+                
+                .wrapper(
+                    .ul(
+                        .forEach(
+                            context.allItems(sortedBy: \.date, order: .descending)
+                        ) { item in
+                            .li(
+                                .article(
+                                    .h1(.text(item.title)),
+                                    .p(.text(item.description))
+                                    
+                                ) // article
+                            ) //li
+                        } //forEach
+                    ) //ul
+                ) //wrapper
             ) //body
         ) //html
     }
