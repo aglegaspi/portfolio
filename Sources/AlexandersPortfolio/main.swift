@@ -14,7 +14,7 @@ struct AlexandersPortfolio: Website {
     }
 
     // Update these properties to configure your website:
-    var url = URL(string: "https://your-website-url.com")!
+    var url = URL(string: "https://aglegaspi.github.io")!
     var name = "Alexander's Portfolio"
     var description = "A portfolio of a Software Engineer"
     var language: Language { .english }
