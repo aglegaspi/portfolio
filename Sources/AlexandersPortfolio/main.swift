@@ -98,7 +98,16 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
     
     func makeItemHTML(for item: Item<Site>, context: PublishingContext<Site>) throws -> HTML {
         HTML(
-            .head(for: item, on: context.site)
+            .head(for: item, on: context.site),
+            .body(
+                .myHeader(for: context),
+                
+                .wrapper(
+                    .article(
+                        .contentBody(item.body)
+                    )
+                )
+            ) //body
         ) //html
     }
     
