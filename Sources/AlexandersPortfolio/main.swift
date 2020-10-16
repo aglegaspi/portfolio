@@ -64,7 +64,11 @@ struct MyHtmlFactory<Site: Website>: HTMLFactory {
                         ) { item in
                             .li(
                                 .article(
-                                    .h1(.text(item.title)),
+                                    .h1(.a(
+                                        .href(item.path),
+                                        .text(item.title)
+                                        ) //a
+                                    ), //h1
                                     .p(.text(item.description))
                                     
                                 ) // article
