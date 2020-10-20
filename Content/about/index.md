@@ -6,7 +6,7 @@ tags: Personal
 
 # About
 
-My name is Alexander George Legaspi(lee-gas-pee). 
+My name is Alexander George Legaspi.
 
 
 ![](/images/profession-2020-lores.png)
@@ -14,10 +14,10 @@ My name is Alexander George Legaspi(lee-gas-pee).
 
 ### Random Facts:
 
-* Got my start in the music business at the age of 15 after making numerous calls to my favorite artists management company.
+* Music is my first love and got my start in the music business at the age of 15. After making numerous calls to my favorite artists management company.
 
-* The first website I created was dedicated to the genre of dance music called Freestyle also known as Latin Hip Hop. I used the hosting service Tripod, make my graphics in Paint Shop Pro, multi-frame layout, and JavaScript.
+* The first website I created was dedicated to the genre of dance music called Freestyle also known as Latin Hip Hop. Used the hosting service Tripod, Paint Shop Pro for graphics, multi-frames, and JavaScript for a custom welcome message.
 
-* I love biking, cooking, making playlists, and sleep.
+* I love biking, cooking, making playlists, learning random information, cartoons, and reading The Hustle.
 
-* Use to currate playlists for actress/singer Vanessa Williams iPod before streaming as a thing. 
+* Used to currate playlists for actress/singer Vanessa Williams iPod before streaming took over the world.

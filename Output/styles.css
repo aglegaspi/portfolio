@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
+:root {
+  --sitename-font-: 'Krona One', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -31,7 +35,7 @@ img {
 }
 
 header {
-    font-family: 'Krona One', sans-serif;
+    font-family: var(--sitename-font-);
     background-color: #eee;
 }
 
@@ -76,6 +80,7 @@ h2 {
 }
 
 p {
+    text-align: center;
     margin-bottom: 10px;
 }
 
@@ -144,6 +149,10 @@ a {
     font-size: 1.4em;
     margin-right: 10px;
     padding: 6px 10px;
+}
+
+ul {
+    margin: 15px;
 }
 
 footer {
