@@ -1,4 +1,6 @@
 ---
+title: My Third Post
+cover: /images/apps/ghf001.png
 date: 2020-10-15 22:14
 description: A description of my first post.
 tags: first, article
