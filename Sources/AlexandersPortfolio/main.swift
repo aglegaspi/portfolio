@@ -7,7 +7,7 @@ struct AlexandersPortfolio: Website {
     enum SectionID: String, WebsiteSectionID {
         // Add the sections that you want your website to contain here:
         case about
-        case posts
+        case projects
     }
     
     struct ItemMetadata: WebsiteItemMetadata {
@@ -66,7 +66,7 @@ extension Node where Context == HTML.BodyContext {
                         )),
                         .li(.a(
                             .href("https://github.com/aglegaspi"),
-                            .text("Repo")
+                            .text("Github")
                         ))
                         )
                     )
